@@ -1,0 +1,126 @@
+
+core baaba
+
+config t
+vlan 25
+name teluscebu.com
+ exit
+Int vlan 25
+ no shut
+ ip add 10.0.4.1 255.255.252.0 ==>1st usable
+ip dhcp excluded-add 10.0.4.1 10.0.4.100
+ip dhcp pool teluCebu.com.com
+ network 10.0.4.0 255.255.252.0==> network add
+ default-router 10.0.4.1  ==>1st usable
+ domain-name telucebu.com
+ dns-server 10.11.1.10
+ option 150 ip 10.11.100.8
+ Int Fa 0/7
+  swi acc vlan 25
+  do sh ip dhcp binding
+
+
+
+ 
+config t
+config t
+vlan 25
+name etelecare.com
+ exit
+Int vlan 25
+ no shut
+ ip add 10.0.64.1 255.255.192.0
+ip dhcp excluded-add 10.0.64.1 10.0.64.100
+ip dhcp pool etelecare.com
+ network 10.0.64.0 255.255.192.0
+ default-router 10.0.64.1
+ domain-name etelecare.com
+ dns-server 10.11.1.10
+ option 150 ip 10.11.100.8
+ Int Fa 0/7
+  swi acc vlan 25
+  do sh ip dhcp bindingconfig t
+vlan 25
+name etelecare.com
+ exit
+Int vlan 25
+ no shut
+ ip add 10.0.64.1 255.255.192.0
+ip dhcp excluded-add 10.0.64.1 10.0.64.100
+ip dhcp pool etelecare.com
+ network 10.0.64.0 255.255.192.0
+ default-router 10.0.64.1
+ domain-name etelecare.com
+ dns-server 10.11.1.10
+ option 150 ip 10.11.100.8
+ Int Fa 0/7
+  swi acc vlan 25
+  do sh ip dhcp binding
+
+
+config t
+vlan 10
+name pnp.gov.ph
+ exit
+Int vlan 10
+ no shut
+ ip add 10.0.1.1 255.255.255.0
+ip dhcp excluded-add 10.0.1.1 10.0.1.100
+ip dhcp pool etelecare.com
+ network 10.0.1.0 255.255.255.0
+ default-router 10.0.1.1
+ domain-name pnp.gov.ph
+ dns-server 10.11.1.10
+ option 150 ip 10.11.100.8
+ Int e0/0
+  swi acc vlan 10
+  do sh ip dhcp binding
+
+
+@A1
+config t
+int e0/0
+swi acc vlan 10
+do sh ip dhcp binding
+
+
+
+
+
+
+
+
+
+
+
+
+erase all routing (factory reset routing)
+config t
+no ip routing
+ip routing
+end
+
+
+Static Routing
+
+R3
+ip route 10.1.1.0 255.255.255.254 10.1.1.5
+
+R2
+ip route 10.1.1.8 255.255.255.254 10.1.1.6
+ 
+R4
+ip route 10.1.1.4 255.255.255.254 10.1.1.9
+ip route 10.1.1.8 255.255.255.254 10.1.1.9
+
+R1
+ip route 10.1.1.4 255.255.255.254 10.1.1.2
+ip route 10.1.1.8 255.255.255.254 10.1.1.2
+
+
+HW
+1. ans 3 page mmwf
+2. YT static lab.
+3. eigrp, ospf
+4.if can get 32/64usb: linis.
+5. webcop resume
