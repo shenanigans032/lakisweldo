@@ -76,3 +76,35 @@ network 10.0.0.0 0.255.255.255 area 0
 
 
 sh run | section ospf
+
+
+
+
+VPN
+
+@VPNJP
+
+config t
+no logging console
+no ip domain lookup
+ip route 0.0.0.0 0.0.0.0 200.0.0.20
+int gi 1
+ip add 200.0.0.10 255.255.255.0
+no shut
+int gi 3
+ip add 10.10.10.1 255.255.255.0
+no shut
+
+
+@VPNPH
+
+config t
+no logging console
+no ip domain lookup
+ip route 0.0.0.0 0.0.0.0 200.0.0.10
+int gi 1
+ip add 200.0.0.20 255.255.255.0
+no shut
+int gi 3
+ip add 10.20.20.1 255.255.255.0
+no shut
