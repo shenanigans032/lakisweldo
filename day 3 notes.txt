@@ -1,0 +1,78 @@
+how to factory RESET routing
+how to get fire agad
+en
+pass
+config t
+no ip routing
+ip routing
+end
+
+TASK 1: 
+FOR P1
+Create  static route for p1 Going to vlan 200
+config t
+ip route 192.168.1.128 255.255.255.254 10.2.1.1 1
+ip route 192.168.1.128 255.255.255.254 10.2.1.2 23
+
+no ip route 192.168.1.128 255.255.255.254 10.2.1.1 1
+
+Longest Prefix Rule
+
+ip route 192.168.1.130 255.255.255.255 10.2.1.2
+
+Default Route for P1 and P2
+P2
+
+EIGRP
+show ip route 
+
+
+ITSM
+http://192.168.108.131/otrs/index.pl
+
+root@localhost
+C1sc0123
+
+http://192.168.108.131/otrs/customer.pl
+user1
+C1sc0123
+
+
+
+BGP new
+R1:
+config t
+router bp 1
+bgp route-id 1
+neighbor 209.9.9.3 remote-as 3
+neighbor 207.7.7.2 remote-as 2
+neighbor 208.8.8.4 remote-as 45
+network 209.9.9.0 mask 255.255.255.0
+network 208.8.8.0 mask 255.255.255.0
+network 207.7.7.0 mask 255.255.255.0
+network 10.1.1.0 mask 255.255.255.252
+address-family ipv4
+neighbor 209.9.9.3 activate
+neighbor 207.7.7.2 activate
+neighbor 208.8.8.4 activate
+end
+
+
+OSPF REAL EQUIP
+@SW
+config t
+router ospf 1 
+network 10.0.0.0 0.255.255.255 area 0
+@CUCM
+config t
+router ospf 1 
+network 10.0.0.0 0.255.255.255 area 0
+
+@edge
+config t
+router ospf 1 
+network 200.0.0.0 0.0.0.255 area 0
+network 10.0.0.0 0.255.255.255 area 0
+
+
+sh run | section ospf
