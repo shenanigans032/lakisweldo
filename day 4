@@ -324,6 +324,13 @@ https://cios.dhitechnical.com/CSR1000v/
 
 
 
+@ Access Point
+
+Recover-Config
+
+@ core baba
+sh ip dhcp binding
+
 
 
 
