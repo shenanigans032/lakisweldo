@@ -35,7 +35,7 @@ config t
 	 description VOICEVLAN
 	 
 !DHCP: DYNAMIC HOST CONFIGURATION PROTOCOL
-!@@@LEAF SWITCH
+!@@@LEAF SWITCH >> core baba
 config t
 ip dhcp Excluded-add 10.11.1.1 10.11.1.100
 ip dhcp Excluded-add 10.11.10.1 10.11.10.100
@@ -169,13 +169,13 @@ Ephone 1
   button 1:1 2:3 3:2 4:4
   restart
 Ephone 2
-  Mac-address 64e9.50ca.747e
+  Mac-address ccd8.c1fb.0817
   type 8945
   button 1:5 2:6 3:7 4:8
   restart  
 end
 
-@@@Enabling Video Calls===>>CUCM
+!@@@Enabling Video Calls===>>CUCM
 configure terminal
 ephone 1
    video
@@ -193,7 +193,8 @@ end
 configure terminal
 voice service voip
 ip address trusted list
-ipv4 0.0.0.0 0.0.0.0 >>>>Any
+ipv4 0.0.0.0 0.0.0.0 
+!^>>>>Any
 exit
 
 configure terminal
