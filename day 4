@@ -78,3 +78,71 @@ C:\Windows\System32\drivers\etc
 
 task 5 implemet  basic cisco sec\
 task 1: policy to call and ping your col
+@Edge:
+use std ACL[1-99] to IP address:
+config t
+no access-list 1
+access-list 1 permit 10.22.0.0 0.0.255.255
+access-list 1 permit 10.31.0.0 0.0.255.255
+access-list 1 permit 10.41.0.0 0.0.255.255
+access-list 1 permit 10.51.0.0 0.0.255.255
+access-list 1 permit 10.61.0.0 0.0.255.255
+access-list 1 permit 10.71.0.0 0.0.255.255
+!access-list deny any
+!lock padlock
+int Gi0/0/1
+ip access-group 1 in
+do sh ip access-list 1
+
+! unlock the padlock
+int Gi0/0/1
+no ip access-group 1 in
+
+
+5.1 new groups
+
+
+no access-list 2
+access-list 2 permit 10.11.0.0 0.0.255.255
+access-list 2 permit 10.12.0.0 0.0.255.255
+access-list 2 permit 10.21.0.0 0.0.255.255
+access-list 2 permit 10.22.0.0 0.0.255.255
+!access-list deny any
+!lock padlock
+int Gi0/0/1
+ip access-group 2 in
+do sh ip access-list 2
+
+
+5.2 soulmate
+
+no access-list 3
+access-list 3 permit 10.11.0.0 0.0.255.255
+access-list 3 permit 10.12.0.0 0.0.255.255
+!access-list deny any
+!lock padlock
+int Gi0/0/1
+ip access-group 3 in
+do sh ip access-list 3
+
+5.2 soulmate x
+no access-list 4
+access-list 4 permit 10.11.0.0 0.0.255.255
+access-list 4 permit 10.22.0.0 0.0.255.255
+!access-list deny any
+!lock padlock
+int Gi0/0/1
+ip access-group 3 in
+do sh ip access-list 3
+
+TASK 6 : Types of net FW
+Saiyan: Packetfilter firwall
+cisco ectednded acl
+linux ip table
+"buti kesa wala"==> block: SIP,DIP,Sport,dport
+
+s.saiyan: application/statefull FW:
+dBEST: NGFW = A.I.
+
+Task 7 implement packet filter FW
+
