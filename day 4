@@ -1,0 +1,80 @@
+cmd
+
+route add 10.0.0.0 mask 255.0.0.0 10.11.1.4
+route add 200.0.0.0 mask 255.255.255.0 10.11.1.4
+
+M = Monitor no.
+ping 10.m.1.10
+ping 10.m.1.4
+ping 10.m.100.8
+ping 10.m.m.1
+ping 200 0 0 M
+
+K = KLASMATE
+200 0 0 .K
+PING 10 K 1 10
+
+day 4
+
+task 1  : fundamentals of starting a cyber sec caree
+1 not o do
+
+task 2 how to exploit IPC$
+
+Microsoft Windows [Version 10.0.20348.587]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Administrator>netshare
+'netshare' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\Administrator>net share
+
+Share name   Resource                        Remark
+
+-------------------------------------------------------------------------------
+C$           C:\                             Default share
+D$           D:\                             Default share
+IPC$                                         Remote IPC
+ADMIN$       C:\Windows                      Remote Admin
+The command completed successfully.
+
+
+C:\Users\Administrator>net use \\10.21.1.10\ipc$
+The command completed successfully.
+
+
+C:\Users\Administrator>net use \\10.21.1.10\ipc$
+Local name
+Remote name       \\10.21.1.10\ipc$
+Resource type     IPC
+Status            OK
+# Opens           0
+# Connections     1
+The command completed successfully.
+
+
+C:\Users\Administrator>net use p: \\10.21.1.10\c$
+The command completed successfully.
+
+
+C:\Users\Administrator>
+
+C:\Users\Administrator>
+
+Task 4
+
+C:\Windows\System32\drivers\etc
+10.11.1.10 pc
+10.11.1.4 sw
+10.11.100.8 cm
+10.11.100.9 cm2
+10.11.100.101 p1
+10.11.100.102 p2
+10.11.12.1 ed
+10.11.10.3 ap
+10.11.50.6 c1
+10.11.50.8 c2
+
+task 5 implemet  basic cisco sec\
+task 1: policy to call and ping your col
