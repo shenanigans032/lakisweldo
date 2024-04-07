@@ -113,6 +113,10 @@ int Gi0/0/1
 ip access-group 2 in
 do sh ip access-list 2
 
+!remove FW onfig
+int gi0/0/1
+no ip access-group 3 in
+do sh run int gi 0/0/1
 
 5.2 soulmate
 
@@ -145,4 +149,183 @@ s.saiyan: application/statefull FW:
 dBEST: NGFW = A.I.
 
 Task 7 implement packet filter FW
+
+TASK 8
+eACL
+1 you are the NSE and confi FW policy w/ these condition
+cm is web server only: 80 and 443
+cm2 is an ssh and dns server only: ping, 22 and 53
+
+magic mormula 	: protocol	hacker			victim 	port" x3
+		tcp,udp,icmp,ip any(0.0.0.0/32)		cm.cm2
+
+@CUCM use  extende ACL [100-199]
+
+config t
+no access-list 100
+access-list 100 permit tcp Any host cm eq 80
+access-list 100 permit tcp Any host cm eq 443
+access-list 100 permit icmp Any host cm2 
+access-list 100 permit tcp Any host cm2 eq 22
+access-list 100 permit tcp Any host cm2 eq 53
+int fa 0/0
+ip access-group 100 in
+do sh ip access-list 100
+end
+
+unlock the FW
+int fa0/0
+no ip access-group 100 in
+end
+====================================
+conditions:
+cm is ssh, sscp,sip server,
+cm2 is an http https. dns server:
+
+config t
+access-list 101 permit tcp Any host cm eq 22
+access-list 101 permit tcp Any host cm eq 2000
+access-list 101 permit tcp Any host cm eq 5060
+access-list 101 permit tcp Any host cm2 eq 80
+access-list 101 permit tcp Any host cm2 eq 443
+access-list 101 permit tcp Any host cm2 eq 53
+int fa0/0
+ip access-group 101 in
+do sh ip access-list 101
+end
+
+unlock
+int fa0/0
+no ip access-group 101 in
+end
+=============================================
+
+conditions:
+cm is telnet, ssh, dns
+cm2 is an ping no port sccp,http
+
+
+access-list 100 permit tcp Any host cm eq 23
+access-list 100 permit tcp Any host cm eq 22
+access-list 100 permit tcp Any host cm eq 53
+access-list 100 permit icmp Any host cm2
+access-list 100 permit tcp Any host cm2 eq 2000
+access-list 100 permit tcp Any host cm2 eq 443
+int fa0/0
+ip access-group 101 in
+do sh ip access-list 101
+end
+================================================================================================
+Task 8 assignment
+create your own home cyber seclab
+fw vpn nat ssh dhcp intrution prevernsion sys detection = UTM unified threart mgmnt
+ing kali.7z vmware, csr100
+1 instaall
+
+part 2:
+
+config t
+int gi 2
+ip add 192.168.102.8 255.255.255.0
+no shut
+int gi 3
+ip add 192.168.103.8 255.255.255.0
+no shut
+
+
+TASK : Network eng ultimate skill
+skill1
+config t
+username annecurtis privilege 15 secret password
+username joven privilege 15 secret password
+line vty 0 14
+transport input telnet ssh
+
+
+skillno.2 ssh ver 2
+ssh is very secure protocol for admins
+config t
+ip domain lookup
+ip domain-name mysite.com
+crypto key generate rsa
+ip ssh version 2 
+line vty 0 14
+transport input ssh telnet
+
+skill no 3: network add translation\pa-hotspot
+ggive internet to linux server in bldg 1 and bldg. 2
+give ip add to lin2 and lin3
+lin2:
+sudo ifconfig eth0 192.168.103.50 netmask 255.255.255.0 up
+sudo route add default gw 192.168.102.8
+
+lin3:
+sudo ifconfig eth0 192.168.102.50 netmask 255.255.255.0 up
+sudo route add default gw 192.168.103.8
+
+use cisco to give interne to lin2 and lin3
+@utm:
+
+config t
+interface gi 1
+ip nat OUTSIDE
+interface gi 2
+ip nat INSIDE
+interface gi 3
+ip nat INSIDE
+access-list 8 permit 192.168.102.0 0.0.0.255
+access-list 8 permit 192.168.103.0 0.0.0.255
+!!Static NAT ip add
+ip nat inside source static 192.168.102.50 192.168.108.69
+ip nat inside source static 192.168.102.50 192.168.108.77
+
+
+to be continue
+
+skill 4 : network time protocol
+
+config utm to sync with google usa: time.google.com
+
+config t
+ip domain lookup
+ip name-server 8.8.8.8 1.1.1.1
+ntp server 216.239.35.4
+do sh ntp association
+do sh clock
+
+skill 5 : learn to block top pornsites
+Trivia : all the top 
+pornhub.com 66.256.0.0
+redtube
+youpo
+
+config t
+no access-list 69 deny 66.256.0.0 0.0.255.255
+no access-list 69 deny 68.235.0.0 0.0.255.255
+no access-list 69 deny 104.21.0.0 0.0.255.255
+no access-list 69 deny 88.208.0.0 0.0.255.255
+access-list 69 permit any
+int gi 1
+ip access-group 69 in
+end
+
+sh history
+
+
+
+
+
+
+
+=======================================================================================
+
+
+https://cios.dhitechnical.com/CSR1000v/
+
+
+
+
+
+
+
 
